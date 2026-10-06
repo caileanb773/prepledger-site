@@ -186,16 +186,38 @@ p {
 
     display: flex;
     align-items: center;
+    justify-content: center;
 
     border-bottom: 1px solid var(--border);
 }
 
+.hero-text {
+    max-width: 800px;
+}
+
+.hero-text h1 {
+    margin: 0 auto 24px;
+}
+
 .hero-content {
     padding: 100px 0;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .hero-description {
     padding: 15px 15px 15px 0px;
+
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
 }
 
 
@@ -366,5 +388,83 @@ p {
     .feature-card {
         flex-direction: column;
         padding: 26px;
+    }
+}
+
+/* ========================================
+   Download Page
+   ======================================== */
+
+.download-hero {
+    padding: 100px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.download-hero h1 {
+    margin: 0 auto 20px;
+}
+
+.download-hero > .container > p {
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.download-button {
+    min-width: 220px;
+}
+
+.version {
+    margin-top: 14px !important;
+    font-size: 13px;
+}
+
+.download-info {
+    padding: 70px 0;
+}
+
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.download-card {
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.download-card h2 {
+    margin-bottom: 18px;
+    font-size: 1.4rem;
+}
+
+.download-card p,
+.download-card li {
+    color: var(--text-muted);
+}
+
+.download-card ol {
+    padding-left: 22px;
+    line-height: 2;
+}
+
+.download-footer {
+    padding: 70px 0;
+    text-align: center;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+.download-footer p {
+    max-width: 600px;
+    margin: 0 auto 24px;
+}
+
+@media (max-width: 700px) {
+    .download-grid {
+        grid-template-columns: 1fr;
     }
 }
