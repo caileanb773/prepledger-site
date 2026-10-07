@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
 
 
 :root {
@@ -118,6 +118,10 @@ h1 span {
     color: var(--accent);
 }
 
+h2 span {
+    color: var(--accent);
+}
+
 
 h2 {
     font-size: clamp(30px, 4vw, 46px);
@@ -218,6 +222,18 @@ p {
     display: flex;
     justify-content: center;
     gap: 12px;
+}
+
+.hero-screenshot {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.hero-screenshot img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 12px;
 }
 
 
