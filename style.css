@@ -113,10 +113,19 @@ h1 {
     letter-spacing: -0.05em;
 }
 
+p span {
+    color: var(--accent); 
+}
+
+a span {
+    color: var(--accent);
+}
+
 
 h1 span {
     color: var(--accent);
 }
+
 
 h2 span {
     color: var(--accent);
@@ -450,6 +459,15 @@ p {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
+
+    transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.download-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
 }
 
 .download-card h2 {
