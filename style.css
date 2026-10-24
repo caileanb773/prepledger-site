@@ -618,3 +618,8 @@ p {
     color: #ff7777;
     font-size: 0.9rem;
 }
+
+.form-success {
+    color: #38b5a7;
+    font-size: 0.9rem;
+}

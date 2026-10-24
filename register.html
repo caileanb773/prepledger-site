@@ -74,28 +74,65 @@
         </section>
     </main>
 
-    <script>
-        const form = document.getElementById('register-form');
-        const message = document.getElementById('form-message');
+<script>
+    const form = document.getElementById('register-form');
+    const message = document.getElementById('form-message');
 
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
+    const API_URL =
+        'https://prepledger-server-production.up.railway.app';
 
-            const password = document.getElementById('password').value;
-            const confirmPassword =
-                document.getElementById('confirm-password').value;
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-            if (password !== confirmPassword) {
-                message.textContent = 'Passwords do not match.';
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword =
+            document.getElementById('confirm-password').value;
+
+        message.className = '';
+        message.textContent = '';
+
+        if (password !== confirmPassword) {
+            message.textContent = 'Passwords do not match.';
+            message.className = 'form-error';
+            return;
+        }
+
+        const button = form.querySelector('button[type="submit"]');
+        button.disabled = true;
+        button.textContent = 'Creating account...';
+
+        try {
+            const response = await fetch(`${API_URL}/auth/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (response.ok) {
+                message.textContent =
+                    'Account created successfully! You can now use PrepLedger.';
+                message.className = 'form-success';
+                form.reset();
+            } else {
+                message.textContent =
+                    response.status === 409
+                        ? 'An account with that email may already exist.'
+                        : 'Registration failed. Please try again.';
                 message.className = 'form-error';
-                return;
             }
-
+        } catch (error) {
             message.textContent =
-                'Registration is not connected to the server yet.';
-            message.className = '';
-        });
-    </script>
+                'Could not connect to the server. Please try again later.';
+            message.className = 'form-error';
+        } finally {
+            button.disabled = false;
+            button.textContent = 'Create account';
+        }
+    });
+</script>
 
 </body>
 </html>
