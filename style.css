@@ -538,10 +538,6 @@ p {
     margin-bottom: 20px;
 }
 
-.auth-heading p {
-    color: var(--muted, #a0aab4);
-}
-
 .form-group {
     display: flex;
     flex-direction: column;
