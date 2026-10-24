@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register — PrepLedger</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+    <script src="js/include.js"></script>
+
+    <main class="auth-page">
+        <section class="auth-card">
+            <div class="auth-heading">
+                <h2>Create your account</h2>
+                <p>Get your kitchen <span>organized</span> with PrepLedger.</p>
+            </div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm password</label>
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        name="confirmPassword"
+                        placeholder="Enter your password again"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+
+                <p id="form-message" role="status" aria-live="polite"></p>
+
+                <button type="submit" class="btn btn-primary auth-submit">
+                    Create account
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>
+                    Forgot your password?
+                    <a href="forgot-password.html">Reset it here</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const form = document.getElementById('register-form');
+        const message = document.getElementById('form-message');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const password = document.getElementById('password').value;
+            const confirmPassword =
+                document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                message.textContent = 'Passwords do not match.';
+                message.className = 'form-error';
+                return;
+            }
+
+            message.textContent =
+                'Registration is not connected to the server yet.';
+            message.className = '';
+        });
+    </script>
+
+</body>
+</html>
