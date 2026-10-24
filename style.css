@@ -505,3 +505,120 @@ p {
         grid-template-columns: 1fr;
     }
 }
+
+/* ========================================
+   Register Page
+   ======================================== */
+
+/* Authentication pages */
+
+.auth-page {
+    min-height: calc(100vh - 72px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 24px 48px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 40px;
+    background: var(--surface, #1C252E);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.auth-heading {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-heading h1 {
+    margin-bottom: 10px;
+}
+
+.auth-heading p {
+    color: var(--muted, #a0aab4);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #11181f;
+    color: #fff;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: 2px solid #2E9B90;
+    outline-offset: 1px;
+}
+
+.auth-submit {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    margin-top: 12px;
+
+    background: #2E9B90;
+    color: #ffff;
+
+    border: none;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.auth-submit:hover {
+    background: #38b5a7;
+    transform: translateY(-1px);
+}
+
+.auth-submit:active {
+    transform: translateY(0);
+}
+
+.auth-footer {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.auth-footer p {
+    margin: 12px 0;
+}
+
+.auth-footer a {
+    color: #2E9B90;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+.form-error {
+    color: #ff7777;
+    font-size: 0.9rem;
+}
