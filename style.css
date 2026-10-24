@@ -531,11 +531,11 @@ p {
 
 .auth-heading {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
 
-.auth-heading h1 {
-    margin-bottom: 10px;
+.auth-heading h2 {
+    margin-bottom: 20px;
 }
 
 .auth-heading p {
