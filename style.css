@@ -55,8 +55,11 @@ a {
 .site-header {
     border-bottom: 1px solid var(--border);
     background: rgba(17, 24, 31, 0.95);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
-
 
 .header-content {
     min-height: 72px;
