@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email | PrepLedger</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+    <main class="auth-card">
+        <h2 class="auth-heading">Verify your email</h2>
+        <p id="verification-message">
+            Verifying your email address...
+        </p>
+
+        <p id="form-message" class="form-error" hidden></p>
+
+        <p class="auth-footer" id="auth-footer" hidden>
+            You can now open PrepLedger and log in.
+        </p>
+    </main>
+
+    <script>
+        const message = document.getElementById("form-message");
+        const verificationMessage =
+            document.getElementById("verification-message");
+        const footer = document.getElementById("auth-footer");
+
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get("token");
+
+        async function verifyEmail() {
+            if (!token) {
+                throw new Error("This verification link is invalid or missing its token.");
+            }
+
+            const response = await fetch(
+                "https://prepledger-server-production.up.railway.app/auth/verify-email?token="
+                    + encodeURIComponent(token),
+                {
+                    method: "GET"
+                }
+            );
+
+            const result = await response.text();
+
+            if (!response.ok) {
+                throw new Error(result || "Unable to verify your email address.");
+            }
+
+            verificationMessage.textContent =
+                "Your email address has been successfully verified!";
+
+            footer.hidden = false;
+        }
+
+        verifyEmail().catch(error => {
+            verificationMessage.textContent =
+                "Email verification unsuccessful.";
+
+            message.textContent =
+                error.message || "Something went wrong. Please try again.";
+
+            message.hidden = false;
+        });
+    </script>
+
+</body>
+</html>
