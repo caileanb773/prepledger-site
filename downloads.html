@@ -22,18 +22,32 @@
 
                 <span class="eyebrow">WINDOWS BETA</span>
 
-                <h2><span>Free</span> beta trial.</h2>
+                <h2><span>Free</span> beta.</h2>
 
                 <p>
                     PrepLedger is now in <span>Private Beta Testing.</span><br>
                     If you have a code, enter it below to join in.
                 </p>
 
-                <a href="downloads.html"
-                   class="button primary download-button">
-                    Download PrepLedger
-                </a>
+                <form action="https://prepledger-server-production.up.railway.app/admin/installer/download"
+                    method="POST"
+                    class="download-form">
 
+                    <input
+                        name="passphrase"
+                        placeholder="Enter invitation code"
+                        aria-label="Invitation code"
+                        required
+                    >
+
+                    <button type="submit" class="button primary download-button">
+                        Download PrepLedger
+                    </button>
+
+                </form>
+
+                <p id="download-status" class="download-status" aria-live="polite"></p>
+                
                 <p class="version">
                     Version 0.1.2 · Windows 10 / 11
                 </p>
@@ -102,6 +116,57 @@
 
         </div>
     </footer>
+
+    <script>
+        const downloadForm = document.querySelector(".download-form");
+        const status = document.getElementById("download-status");
+        const button = downloadForm.querySelector("button");
+
+        downloadForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const passphrase = downloadForm.elements.passphrase.value;
+
+            button.disabled = true;
+            button.textContent = "Verifying...";
+            status.textContent = "";
+            status.className = "download-status";
+
+            try {
+                const response = await fetch(downloadForm.action, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: new URLSearchParams({ passphrase })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Invalid invitation code.");
+                }
+
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "PrepLedger-Setup.exe";
+                link.click();
+
+                URL.revokeObjectURL(url);
+
+                status.textContent = "Invitation code accepted! Your download is starting.";
+                status.classList.add("success");
+
+            } catch (error) {
+                status.textContent = "Invalid invitation code.";
+                status.classList.add("error");
+            } finally {
+                button.disabled = false;
+                button.textContent = "Download PrepLedger";
+            }
+        });
+    </script>
 
 </body>
 </html>

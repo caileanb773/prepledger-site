@@ -623,3 +623,70 @@ p {
     color: #38b5a7;
     font-size: 0.9rem;
 }
+
+.download-form {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 10px;
+    margin: 28px auto 0;
+    max-width: 420px;
+}
+
+.download-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 16px;
+    border: 1px solid #555B6B;
+    border-radius: 6px;
+    background: #222838;
+    color: var(--text-color);
+    font: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.download-form input::placeholder {
+    color: #A0A5B3;
+}
+
+.download-form input:focus {
+    border-color: #9B8AFB;
+    box-shadow: 0 0 0 3px rgba(155, 138, 251, 0.15);
+}
+
+.download-form .download-button {
+    margin: 0;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .download-form {
+        flex-direction: column;
+    }
+
+    .download-form .download-button {
+        width: 100%;
+    }
+}
+
+.download-status {
+    min-height: 20px;
+    margin: 14px 0 0;
+    font-size: 0.9rem;
+}
+
+.download-status.success {
+    color: #78D6B0;
+}
+
+.download-status.error {
+    color: #E88A8A;
+}
+
+.download-form button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
